@@ -51,17 +51,17 @@ export default function Navbar() {
               {/* User details */}
               <div className="hidden md:flex items-center gap-2 pl-2 border-l border-slate-200">
                 <div className="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-600 font-semibold text-xs">
-                  {user.name.charAt(0).toUpperCase()}
+                  {(user.name || user.email || 'User').charAt(0).toUpperCase()}
                 </div>
                 <div className="text-left text-xs">
-                  <div className="font-semibold text-slate-800">{user.name}</div>
+                  <div className="font-semibold text-slate-800">{user.name || user.email || 'User'}</div>
                   <div className="flex items-center gap-1">
                     <span
                       className={`inline-block w-1.5 h-1.5 rounded-full ${
                         user.role === 'brand' ? 'bg-purple-500' : 'bg-emerald-500'
                       }`}
                     />
-                    <span className="capitalize text-slate-500">{user.role}</span>
+                    <span className="capitalize text-slate-500">{user.role || 'creator'}</span>
                   </div>
                 </div>
               </div>

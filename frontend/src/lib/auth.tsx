@@ -29,7 +29,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (savedToken && savedUser) {
       try {
         setToken(savedToken);
-        setUser(JSON.parse(savedUser));
+        const parsed = JSON.parse(savedUser);
+        if (parsed && typeof parsed === 'object') {
+          if (!parsed.name) parsed.name = parsed.email || 'User';
+          setUser(parsed);
+        } else {
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+        }
       } catch (e) {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
