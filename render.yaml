@@ -14,3 +14,4 @@ services:
         value: memed_super_secret_jwt_key_production_2025
       - key: MONGODB_URI
         value: memory
+

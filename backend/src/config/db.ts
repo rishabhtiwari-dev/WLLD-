@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
-import { MongoMemoryServer } from 'mongodb-memory-server';
 
-let mongod: MongoMemoryServer | null = null;
+let mongod: any = null;
 
 export const connectDB = async (): Promise<void> => {
   try {
@@ -9,12 +8,21 @@ export const connectDB = async (): Promise<void> => {
 
     if (!mongoUri || mongoUri === 'memory') {
       console.log('⚡ Initializing in-memory MongoDB instance for development/testing...');
-      mongod = await MongoMemoryServer.create();
-      mongoUri = mongod.getUri();
-      console.log(`✅ In-memory MongoDB started at: ${mongoUri}`);
+      try {
+        const { MongoMemoryServer } = await import('mongodb-memory-server');
+        mongod = await MongoMemoryServer.create();
+        mongoUri = mongod.getUri();
+        console.log(`✅ In-memory MongoDB started at: ${mongoUri}`);
+      } catch (err: any) {
+        console.error(
+          '❌ Could not start mongodb-memory-server. If running in production (e.g. Render), please set the MONGODB_URI environment variable to a MongoDB Atlas cluster URI.',
+          err.message
+        );
+        throw err;
+      }
     }
 
-    await mongoose.connect(mongoUri);
+    await mongoose.connect(mongoUri!);
     console.log(`✅ Connected to MongoDB successfully (${mongoose.connection.host})`);
   } catch (error: any) {
     console.error('❌ MongoDB connection error:', error.message);
@@ -32,4 +40,3 @@ export const disconnectDB = async (): Promise<void> => {
     console.error('Error disconnecting MongoDB:', error.message);
   }
 };
-
