@@ -1,5 +1,6 @@
 import app from './app';
 import { connectDB, disconnectDB } from './config/db';
+import { autoSeedIfEmpty } from './config/autoSeed';
 import { CacheService } from './services/cacheService';
 
 const PORT = process.env.PORT || 5000;
@@ -7,6 +8,7 @@ const PORT = process.env.PORT || 5000;
 const startServer = async () => {
   try {
     await connectDB();
+    await autoSeedIfEmpty();
     CacheService.initialize();
 
     const server = app.listen(PORT, () => {

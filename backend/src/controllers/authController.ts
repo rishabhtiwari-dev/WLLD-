@@ -68,7 +68,32 @@ export const login = async (req: Request, res: Response): Promise<void> => {
   try {
     const { email, password } = req.body;
 
-    const user = await User.findOne({ email: email.toLowerCase() });
+    let user = await User.findOne({ email: email.toLowerCase() });
+
+    // Auto-provision demo users on the fly if database is empty/reset
+    if (
+      !user &&
+      (email.toLowerCase() === 'brand@memed.com' ||
+        email.toLowerCase() === 'creator@memed.com' ||
+        email.toLowerCase() === 'priya@memed.com') &&
+      password === 'password123'
+    ) {
+      const salt = await bcrypt.genSalt(10);
+      const passwordHash = await bcrypt.hash('password123', salt);
+      const isBrand = email.toLowerCase() === 'brand@memed.com';
+      const name = isBrand
+        ? 'Red Bull Marketing'
+        : email.toLowerCase().includes('priya')
+        ? 'Priya (EpicClipsHQ)'
+        : 'Aarav (DailyMemeDrop)';
+      user = await User.create({
+        name,
+        email: email.toLowerCase(),
+        passwordHash,
+        role: isBrand ? 'brand' : 'creator'
+      });
+    }
+
     if (!user) {
       res.status(401).json({ success: false, message: 'Invalid email or password' });
       return;
