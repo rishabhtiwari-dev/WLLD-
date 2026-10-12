@@ -193,3 +193,4 @@ export default function CreateCampaignModal({ isOpen, onClose, onSuccess }: Prop
     </div>
   );
 }
+

@@ -66,3 +66,4 @@ export function useSubmitPost({ campaign, onSuccess, onClose }: UseSubmitPostPro
     resetForm,
   };
 }
+

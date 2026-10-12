@@ -115,3 +115,4 @@ export const autoSeedIfEmpty = async (): Promise<void> => {
     console.warn('Auto-seed notice:', error.message);
   }
 };
+

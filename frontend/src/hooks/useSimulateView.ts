@@ -82,3 +82,4 @@ export function useSimulateView({ submission, onSuccess }: UseSimulateViewProps)
     handleSimulate,
   };
 }
+
