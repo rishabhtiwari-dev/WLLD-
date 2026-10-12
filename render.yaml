@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: memed-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: JWT_SECRET
+        value: memed_super_secret_jwt_key_production_2025
+      - key: MONGODB_URI
+        value: memory
