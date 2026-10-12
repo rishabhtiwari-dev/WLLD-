@@ -3,6 +3,8 @@
 A full-stack application built for the **WLDD** assignment. It lets brands run creator campaigns with view-based milestone ladders (e.g. 10K views → ₹500, 50K views → ₹2,000, 100K views → ₹5,000) and strict budget caps, while creators can submit links, view verified payouts, and simulate view updates in real-time.
 
 - **GitHub Repository**: [https://github.com/rishabhtiwari-dev/WLLD-](https://github.com/rishabhtiwari-dev/WLLD-)
+- **Live Backend API**: [https://wlld.onrender.com](https://wlld.onrender.com) (Health: [https://wlld.onrender.com/health](https://wlld.onrender.com/health))
+- **Live Frontend**: *(Follow the 60-second Vercel deployment below)*
 
 ---
 
