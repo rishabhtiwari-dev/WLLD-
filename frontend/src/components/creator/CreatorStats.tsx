@@ -21,7 +21,7 @@ export default function CreatorStats({ earnings }: Props) {
           </div>
         </div>
         <div className="mt-4 text-3xl font-black">
-          ₹{earnings.totalEarnings.toLocaleString()}
+          ₹{(earnings.totalEarnings || 0).toLocaleString()}
         </div>
         <span className="text-[11px] text-emerald-100 mt-1 block">
           Accrued across all verified posts
@@ -38,7 +38,7 @@ export default function CreatorStats({ earnings }: Props) {
           </div>
         </div>
         <div className="mt-4 text-3xl font-black text-slate-900">
-          {earnings.totalViews.toLocaleString()}
+          {(earnings.totalViews || 0).toLocaleString()}
         </div>
         <span className="text-[11px] text-slate-400 mt-1 block">Across active campaigns</span>
       </div>
@@ -53,10 +53,11 @@ export default function CreatorStats({ earnings }: Props) {
           </div>
         </div>
         <div className="mt-4 text-3xl font-black text-purple-600">
-          {earnings.totalSubmissions}
+          {(earnings.totalSubmissions || 0).toLocaleString()}
         </div>
         <span className="text-[11px] text-slate-400 mt-1 block">Active tracking links</span>
       </div>
     </div>
   );
 }
+

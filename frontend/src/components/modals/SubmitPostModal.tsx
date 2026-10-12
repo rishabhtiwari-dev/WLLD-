@@ -62,7 +62,7 @@ export default function SubmitPostModal({ campaign, isOpen, onClose, onSuccess }
           <div className="flex items-center justify-between text-slate-500">
             <span>Remaining Campaign Budget:</span>
             <span className="font-bold text-emerald-600">
-              ₹{campaign.remainingBudget.toLocaleString()}
+              ₹{((campaign.remainingBudget ?? Math.max(0, (campaign.totalBudget || 0) - (campaign.spentBudget || 0))) || 0).toLocaleString()}
             </span>
           </div>
         </div>
@@ -130,3 +130,4 @@ export default function SubmitPostModal({ campaign, isOpen, onClose, onSuccess }
     </div>
   );
 }
+

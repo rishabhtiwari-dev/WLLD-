@@ -58,12 +58,17 @@ export default function CreatorSubmissionsList({
             <tbody className="divide-y divide-slate-100">
               {submissions.map((sub) => {
                 const camp = typeof sub.campaignId === 'object' ? sub.campaignId : null;
+                const remaining = camp
+                  ? camp.remainingBudget ??
+                    Math.max(0, (camp.totalBudget || 0) - (camp.spentBudget || 0))
+                  : 0;
+
                 return (
                   <tr key={sub._id} className="hover:bg-slate-50/70 transition">
                     <td className="px-5 py-4">
                       <span className="font-bold text-slate-900 block">{camp?.name || 'Campaign'}</span>
                       <span className="text-[10px] text-slate-400">
-                        Budget Remaining: ₹{camp ? camp.remainingBudget.toLocaleString() : 'N/A'}
+                        Budget Remaining: ₹{camp ? remaining.toLocaleString() : 'N/A'}
                       </span>
                     </td>
 
@@ -89,7 +94,7 @@ export default function CreatorSubmissionsList({
 
                     <td className="px-5 py-4">
                       <span className="text-sm font-bold text-slate-900 block">
-                        {sub.currentViews.toLocaleString()}
+                        {(sub.currentViews || 0).toLocaleString()}
                       </span>
                       <span className="text-[10px] text-slate-400">views</span>
                     </td>
@@ -98,8 +103,8 @@ export default function CreatorSubmissionsList({
                       {sub.highestMilestoneReached ? (
                         <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-emerald-50 text-emerald-700 rounded-lg text-xs font-bold border border-emerald-200">
                           <CheckCircle2 className="w-3 h-3 text-emerald-600" />
-                          {sub.highestMilestoneReached.views.toLocaleString()}v (₹
-                          {sub.highestMilestoneReached.payout})
+                          {(sub.highestMilestoneReached.views || 0).toLocaleString()}v (₹
+                          {(sub.highestMilestoneReached.payout || 0).toLocaleString()})
                         </span>
                       ) : (
                         <span className="text-slate-400 text-xs">Waiting for 1st milestone</span>
@@ -108,7 +113,7 @@ export default function CreatorSubmissionsList({
 
                     <td className="px-5 py-4">
                       <span className="text-base font-black text-emerald-600">
-                        ₹{sub.currentPayout.toLocaleString()}
+                        ₹{(sub.currentPayout || 0).toLocaleString()}
                       </span>
                     </td>
 
@@ -147,3 +152,4 @@ export default function CreatorSubmissionsList({
     </div>
   );
 }
+

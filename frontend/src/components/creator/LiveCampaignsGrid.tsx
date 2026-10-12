@@ -13,7 +13,8 @@ export default function LiveCampaignsGrid({ campaigns, onOpenSubmit }: Props) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {campaigns.map((camp) => {
-        const remaining = camp.remainingBudget;
+        const remaining =
+          camp.remainingBudget ?? Math.max(0, (camp.totalBudget || 0) - (camp.spentBudget || 0));
         const isExhausted = remaining <= 0;
 
         return (
@@ -77,3 +78,4 @@ export default function LiveCampaignsGrid({ campaigns, onOpenSubmit }: Props) {
     </div>
   );
 }
+

@@ -86,9 +86,17 @@ export const getCreatorSubmissions = async (req: AuthRequest, res: Response): Pr
       .sort({ createdAt: -1 })
       .lean();
 
+    const enriched = submissions.map((s) => {
+      if (s.campaignId && typeof s.campaignId === 'object') {
+        const c = s.campaignId as any;
+        c.remainingBudget = Math.max(0, (c.totalBudget || 0) - (c.spentBudget || 0));
+      }
+      return s;
+    });
+
     res.status(200).json({
       success: true,
-      data: submissions
+      data: enriched
     });
   } catch (error: any) {
     res.status(500).json({ success: false, message: error.message });
