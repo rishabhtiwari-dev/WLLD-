@@ -47,3 +47,4 @@ router.patch(
 router.get('/:id', authenticateToken, getSubmissionById);
 
 export default router;
+

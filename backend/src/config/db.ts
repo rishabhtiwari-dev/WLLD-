@@ -32,3 +32,4 @@ export const disconnectDB = async (): Promise<void> => {
     console.error('Error disconnecting MongoDB:', error.message);
   }
 };
+

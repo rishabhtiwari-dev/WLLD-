@@ -83,3 +83,4 @@ campaignSchema.virtual('remainingBudget').get(function (this: ICampaignDocument)
 });
 
 export const Campaign = mongoose.model<ICampaignDocument>('Campaign', campaignSchema);
+

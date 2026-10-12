@@ -55,18 +55,37 @@ A full-stack creator marketplace application built for **WLDD**. Brands launch c
 │   └── .env.example
 ├── frontend/
 │   ├── src/
-│   │   ├── app/
-│   │   │   ├── brand/page.tsx      # Brand dashboard (Spent vs Remaining budget, Create Campaign)
-│   │   │   ├── creator/page.tsx    # Creator portal (Browse campaigns, Submit post, Track earnings)
-│   │   │   ├── login/page.tsx      # Login page with 1-click demo buttons
-│   │   │   ├── register/page.tsx   # Sign-up page with role selection
+│   │   ├── hooks/                  # BUSINESS LOGIC & FUNCTIONS (state, handlers, API calls)
+│   │   │   ├── useBrandDashboard.ts
+│   │   │   ├── useCreatorPortal.ts
+│   │   │   ├── useCreateCampaign.ts
+│   │   │   ├── useSubmitPost.ts
+│   │   │   ├── useSimulateView.ts
+│   │   │   ├── useLoginForm.ts
+│   │   │   └── useRegisterForm.ts
+│   │   ├── components/             # PURE PRESENTATIONAL / UI DESIGN COMPONENTS
+│   │   │   ├── brand/
+│   │   │   │   ├── BrandStats.tsx
+│   │   │   │   └── CampaignsList.tsx
+│   │   │   ├── creator/
+│   │   │   │   ├── CreatorStats.tsx
+│   │   │   │   ├── CreatorSubmissionsList.tsx
+│   │   │   │   └── LiveCampaignsGrid.tsx
+│   │   │   ├── modals/
+│   │   │   │   ├── CreateCampaignModal.tsx
+│   │   │   │   ├── SubmitPostModal.tsx
+│   │   │   │   └── SimulateViewModal.tsx
+│   │   │   ├── auth/
+│   │   │   │   ├── LoginFormView.tsx
+│   │   │   │   └── RegisterFormView.tsx
+│   │   │   └── Navbar.tsx
+│   │   ├── app/                    # THIN ROUTE CONTAINERS (connecting hook to design)
+│   │   │   ├── brand/page.tsx      # Brand dashboard
+│   │   │   ├── creator/page.tsx    # Creator portal
+│   │   │   ├── login/page.tsx      # Login page
+│   │   │   ├── register/page.tsx   # Sign-up page
 │   │   │   ├── layout.tsx          # Root layout with AuthProvider & Navbar
 │   │   │   └── page.tsx            # Landing page
-│   │   ├── components/             # Reusable UI widgets & interactive modals
-│   │   │   ├── Navbar.tsx
-│   │   │   ├── CreateCampaignModal.tsx
-│   │   │   ├── SubmitPostModal.tsx
-│   │   │   └── SimulateViewModal.tsx # Interactive tool to simulate views & test payouts
 │   │   ├── lib/                    # API client & AuthContext
 │   │   └── types/                  # Frontend shared types
 │   ├── Dockerfile
@@ -311,3 +330,4 @@ Scaling Meme’d from hundreds to **10,000 active creators** submitting thousand
 ---
 
 *Crafted with ❤️ for WLDD by Antigravity.*
+

@@ -70,3 +70,4 @@ export interface AuthUserPayload {
 export interface AuthRequest extends Request {
   user?: AuthUserPayload;
 }
+

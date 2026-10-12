@@ -22,3 +22,4 @@ export const validateRequest = (schema: ZodSchema) => {
     }
   };
 };
+

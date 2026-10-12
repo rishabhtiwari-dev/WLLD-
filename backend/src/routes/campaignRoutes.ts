@@ -26,3 +26,4 @@ router.get('/', authenticateToken, getCampaigns);
 router.get('/:id', authenticateToken, getCampaignById);
 
 export default router;
+

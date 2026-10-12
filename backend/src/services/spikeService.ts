@@ -67,3 +67,4 @@ export class SpikeDetectionService {
     return { isSpike: false };
   }
 }
+

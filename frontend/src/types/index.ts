@@ -57,3 +57,4 @@ export interface CreatorEarnings {
   totalViews: number;
   totalSubmissions: number;
 }
+

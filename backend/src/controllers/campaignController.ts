@@ -161,3 +161,4 @@ export const getCampaignById = async (req: AuthRequest, res: Response): Promise<
     res.status(500).json({ success: false, message: error.message });
   }
 };
+

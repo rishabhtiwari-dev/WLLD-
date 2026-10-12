@@ -79,3 +79,4 @@ const submissionSchema = new Schema<ISubmissionDocument>(
 submissionSchema.index({ campaignId: 1, postUrl: 1 }, { unique: true });
 
 export const Submission = mongoose.model<ISubmissionDocument>('Submission', submissionSchema);
+
